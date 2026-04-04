@@ -38,11 +38,11 @@ const StudentDashboard = () => {
     e.preventDefault();
     try {
       if (editId) {
-        await axios.put(`/api/resources/${editId}`, formData);
+        await axios.put(`${import.meta.env.VITE_API_URL}/api/resources/${editId}`, formData);
         toast.success('Updated successfully');
         setEditId(null);
       } else {
-        await axios.post('/api/resources', formData);
+        await axios.post(`${import.meta.env.VITE_API_URL}/api/resources`, formData);
         toast.success('Added successfully');
       }
       setFormData({ electricityUsage: '', waterConsumption: '', wasteGenerated: '', month: new Date().getMonth() + 1, year: new Date().getFullYear() });
@@ -60,7 +60,7 @@ const StudentDashboard = () => {
   const handleDelete = async (id) => {
     if (!window.confirm('Delete this record?')) return;
     try {
-      await axios.delete(`/api/resources/${id}`);
+      await axios.delete(`${import.meta.env.VITE_API_URL}/api/resources/${id}`);
       toast.success('Deleted successfully');
       fetchDashboard();
     } catch (error) {
