@@ -24,7 +24,7 @@ const StudentDashboard = () => {
 
   const fetchDashboard = async () => {
     try {
-      const { data } = await axios.get('/api/dashboard/student');
+      const { data } = await axios.get(`${import.meta.env.VITE_API_URL}/api/dashboard/student`);
       setDashboardData(data);
     } catch (error) {
       console.error('Dashboard fetch error:', error);
