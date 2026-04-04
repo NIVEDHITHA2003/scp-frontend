@@ -16,7 +16,7 @@ const AdminDashboard = () => {
 
   const fetchDashboard = async () => {
     try {
-      const { data } = await axios.get('/api/dashboard/admin');
+      const { data } = await axios.get(`${import.meta.env.VITE_API_URL}/api/dashboard/admin`);
       setDashboardData(data);
     } catch (error) {
       console.error('Admin dashboard error:', error);
@@ -27,7 +27,7 @@ const AdminDashboard = () => {
 
   const fetchUsers = async () => {
     try {
-      const { data } = await axios.get('/api/users');
+      const { data } = await axios.get(`${import.meta.env.VITE_API_URL}/api/users`);
       setUsers(data);
     } catch (error) {
       toast.error('Failed to load users');
@@ -37,7 +37,7 @@ const AdminDashboard = () => {
   const handleDeleteUser = async (id) => {
     if (!window.confirm('Delete this user?')) return;
     try {
-      await axios.delete(`/api/users/${id}`);
+      await axios.delete(`${import.meta.env.VITE_API_URL}/api/users/${id}`);
       toast.success('User deleted');
       fetchUsers();
       fetchDashboard();
@@ -49,7 +49,7 @@ const AdminDashboard = () => {
   const handleGoalSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post('/api/goals', goalForm);
+      await axios.post(`${import.meta.env.VITE_API_URL}/api/goals`);
       toast.success('Goal created');
       setGoalForm({ targetType: 'energy', targetValue: '', description: '' });
       fetchDashboard();
