@@ -19,7 +19,7 @@ const FacultyDashboard = () => {
       const params = {};
       if (filters.month) params.month = filters.month;
       if (filters.year) params.year = filters.year;
-      const { data } = await axios.get('/api/dashboard/faculty', { params });
+      const { data } = await axios.get(`${import.meta.env.VITE_API_URL}/api/dashboard/faculty`, { params });
       setDashboardData(data);
     } catch (error) {
       console.error('Faculty dashboard error:', error);
