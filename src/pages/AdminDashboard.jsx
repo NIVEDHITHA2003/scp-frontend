@@ -49,7 +49,7 @@ const AdminDashboard = () => {
   const handleGoalSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post(`${import.meta.env.VITE_API_URL}/api/goals`);
+      await axios.post(`${import.meta.env.VITE_API_URL}/api/goals`,goalForm);
       toast.success('Goal created');
       setGoalForm({ targetType: 'energy', targetValue: '', description: '' });
       fetchDashboard();
